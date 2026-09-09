@@ -1,0 +1,1 @@
+const r=require('express').Router(),c=require('../controllers/userController'),{protect}=require('../middleware/auth');r.get('/',protect,c.addresses);r.post('/',protect,c.addAddress);r.put('/:id',protect,c.updateAddress);r.delete('/:id',protect,c.deleteAddress);r.patch('/:id/default',protect,c.defaultAddress);module.exports=r;

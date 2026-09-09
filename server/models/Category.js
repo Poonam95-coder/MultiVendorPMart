@@ -1,0 +1,1 @@
+const mongoose=require('mongoose'); module.exports=mongoose.model('Category',new mongoose.Schema({slug:{type:String,unique:true,required:true},name:{type:String,required:true},image:{type:String,default:''}},{timestamps:true}));

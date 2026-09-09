@@ -1,0 +1,1 @@
+const r=require('express').Router(),c=require('../controllers/deliveryController'),{protect,adminOnly}=require('../middleware/auth');r.get('/',protect,adminOnly,c.getAll);r.post('/',protect,adminOnly,c.create);r.patch('/:id/toggle',protect,adminOnly,c.toggle);module.exports=r;

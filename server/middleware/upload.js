@@ -1,0 +1,1 @@
+const multer=require('multer'); module.exports=multer({storage:multer.memoryStorage(),limits:{fileSize:5*1024*1024},fileFilter:(req,file,cb)=>/^image\/(jpeg|png|webp)$/.test(file.mimetype)?cb(null,true):cb(new Error('Only jpeg, png and webp images are allowed'))});
