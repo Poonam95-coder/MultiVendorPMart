@@ -510,7 +510,7 @@ npm run dev
 
 #### Admin Dashboard
 
-![Admin Dashboard](./screenshots/admin-dashboard.png)
+![Admin Dashboard](./screenshots/admindashboard.png)
 
 #### Seller Management
 
