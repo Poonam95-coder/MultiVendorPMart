@@ -490,7 +490,7 @@ npm run dev
 
 #### Checkout & Payment
 
-![Checkout & Payment](./screenshots/checkout-payment.png)
+![Checkout & Payment](./screenshots/checkout.png)
 
 ---
 
@@ -502,7 +502,7 @@ npm run dev
 
 #### Seller Trust Score
 
-![Seller Trust Score](./screenshots/seller-trust-score.png)
+![Seller Trust Score](./screenshots/sellerproductadd.png)
 
 ---
 
