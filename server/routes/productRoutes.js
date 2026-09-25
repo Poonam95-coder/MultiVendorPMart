@@ -1,1 +1,49 @@
-const r=require('express').Router(),c=require('../controllers/productController'),{protect,adminOnly}=require('../middleware/auth');r.get('/search',c.search);r.get('/deals',c.deals);r.get('/',c.getProducts);r.get('/:id',c.getProduct);r.post('/',protect,adminOnly,c.create);r.put('/:id',protect,adminOnly,c.update);r.patch('/:id/stock',protect,adminOnly,c.stock);r.delete('/:id',protect,adminOnly,c.remove);module.exports=r;
+const express = require("express");
+
+const router = express.Router();
+
+const c = require("../controllers/productController");
+const {
+    protect,
+    adminOnly
+} = require("../middleware/auth");
+
+
+// Public product routes
+router.get("/search", c.search);
+router.get("/deals", c.deals);
+router.get("/", c.getProducts);
+router.get("/:id", c.getProduct);
+
+
+// Admin can manage products
+router.post(
+    "/",
+    protect,
+    adminOnly,
+    c.create
+);
+
+router.put(
+    "/:id",
+    protect,
+    adminOnly,
+    c.update
+);
+
+router.patch(
+    "/:id/stock",
+    protect,
+    adminOnly,
+    c.stock
+);
+
+router.delete(
+    "/:id",
+    protect,
+    adminOnly,
+    c.remove
+);
+
+
+module.exports = router;

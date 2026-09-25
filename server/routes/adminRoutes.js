@@ -1,19 +1,54 @@
-const r = require('express').Router();
-const c = require('../controllers/adminController');
-const { protect, adminOnly } = require('../middleware/auth');
+const express = require("express");
 
-r.use(protect, adminOnly);
+const router = express.Router();
 
-r.get('/dashboard', c.dashboard);
-r.get('/sellers', c.getSellers);
-r.get('/sellers/:id', c.getSellerById);
-r.patch('/sellers/:id/approve', c.approveSeller);
-r.patch('/sellers/:id/reject', c.rejectSeller);
-r.patch('/sellers/:id/suspend', c.suspendSeller);
-r.patch('/sellers/:id/activate', c.activateSeller);
-r.patch('/sellers/:id/verify', c.verifySeller);
-r.patch('/sellers/:id/status', c.toggleSellerStatus);
-
-module.exports = r;
+const c = require("../controllers/adminController");
+const {
+    protect,
+    adminOnly
+} = require("../middleware/auth");
 
 
+// All admin routes require login and admin access
+router.use(protect, adminOnly);
+
+
+// Admin dashboard
+router.get("/dashboard", c.dashboard);
+
+// Seller management
+router.get("/sellers", c.getSellers);
+router.get("/sellers/:id", c.getSellerById);
+
+router.patch(
+    "/sellers/:id/approve",
+    c.approveSeller
+);
+
+router.patch(
+    "/sellers/:id/reject",
+    c.rejectSeller
+);
+
+router.patch(
+    "/sellers/:id/suspend",
+    c.suspendSeller
+);
+
+router.patch(
+    "/sellers/:id/activate",
+    c.activateSeller
+);
+
+router.patch(
+    "/sellers/:id/verify",
+    c.verifySeller
+);
+
+router.patch(
+    "/sellers/:id/status",
+    c.toggleSellerStatus
+);
+
+
+module.exports = router;

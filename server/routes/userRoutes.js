@@ -1,10 +1,35 @@
-const r = require('express').Router();
-const c = require('../controllers/userController');
-const { protect, adminOnly } = require('../middleware/auth');
+const express = require("express");
 
-r.get('/', protect, adminOnly, c.getUsers);
-r.get('/profile', protect, c.profile);
-r.put('/profile', protect, c.update);
+const router = express.Router();
 
-module.exports = r;
+const c = require("../controllers/userController");
+const {
+    protect,
+    adminOnly
+} = require("../middleware/auth");
 
+
+// Admin can view all users
+router.get(
+    "/",
+    protect,
+    adminOnly,
+    c.getUsers
+);
+
+
+// Logged-in user profile
+router.get(
+    "/profile",
+    protect,
+    c.profile
+);
+
+router.put(
+    "/profile",
+    protect,
+    c.update
+);
+
+
+module.exports = router;

@@ -1,14 +1,45 @@
-const r = require('express').Router();
-const c = require('../controllers/authController');
-const { protect } = require('../middleware/auth');
+const express = require("express");
 
-r.post('/register', c.register);
-r.post('/login', c.login);
-r.post('/seller/register', c.sellerRegister);
-r.post('/seller/login', c.sellerLogin);
-r.post('/delivery/login', c.deliveryLogin);
-r.get('/me', protect, c.me);
-r.post('/logout', c.logout);
+const router = express.Router();
 
-module.exports = r;
+const c = require("../controllers/authController");
+const { protect } = require("../middleware/auth");
 
+
+// User authentication
+router.post("/register", c.register);
+router.post("/login", c.login);
+
+
+// Seller authentication
+router.post(
+    "/seller/register",
+    c.sellerRegister
+);
+
+router.post(
+    "/seller/login",
+    c.sellerLogin
+);
+
+
+// Delivery partner login
+router.post(
+    "/delivery/login",
+    c.deliveryLogin
+);
+
+
+// Get currently logged-in user
+router.get(
+    "/me",
+    protect,
+    c.me
+);
+
+
+// Logout user
+router.post("/logout", c.logout);
+
+
+module.exports = router;

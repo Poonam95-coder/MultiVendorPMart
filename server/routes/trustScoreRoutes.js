@@ -1,12 +1,28 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
-const trustController = require('../controllers/trustScoreController');
-const { protect, adminOnly } = require('../middleware/auth');
 
-// Public / Authenticated read endpoint
-router.get('/:sellerId', trustController.getTrustScore);
+const trustController = require("../controllers/trustScoreController");
+const {
+    protect,
+    adminOnly
+} = require("../middleware/auth");
 
-// Protected manual recalculation endpoint
-router.post('/:sellerId/recalculate', protect, adminOnly, trustController.recalculateTrust);
+
+// Anyone can view seller trust score
+router.get(
+    "/:sellerId",
+    trustController.getTrustScore
+);
+
+
+// Only admin can manually recalculate trust score
+router.post(
+    "/:sellerId/recalculate",
+    protect,
+    adminOnly,
+    trustController.recalculateTrust
+);
+
 
 module.exports = router;
